@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HII 🌸</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  /*
+    ───────────────────────────────────────────────────────────────
+    HOW TO PERSONALIZE:
+    Search for [Crush's Name]  → replace with your crush's name
+    Search for [Your Name]     → replace with YOUR name
+    Search for the comment "YOUR CONFESSION PARAGRAPH" → replace
+      the placeholder text inside <p class="body-text">...</p> with
+      your whole confession paragraph. The letter box will auto-grow
+      to fit any length, so write as much as you want.
+
+    HOW TO ADD YOUR SONG (auto-plays when the page opens!):
+    Drop your MP4/M4A/MP3 file in the SAME folder as this HTML,
+    rename it to `song.mp4`. The page auto-loads it and tries to
+    autoplay it the moment your crush opens the file. The vinyl
+    disc in the top-right corner spins while the song plays.
+
+    If the browser blocks autoplay, the disc gently pulses with a
+    "♪ TAP!" hint — your crush just needs to tap anywhere (e.g. tap
+    the letter box to open it) and the song starts automatically.
+    ───────────────────────────────────────────────────────────────
+  */
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --pink-1: #FF1493;   /* deep hot pink */
+    --pink-2: #FF69B4;   /* hot pink */
+    --pink-3: #FFB6C1;   /* light pink */
+    --pink-4: #FFE4EC;   /* blush */
+    --magenta: #C71585;
+    --gold:   #FFD700;
+    --gold-2: #FFC107;
+    --cream:  #FFF8F0;
+    --black:  #2D1B2E;
+  }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: 'Quicksand', sans-serif;
+    /* Soft cream + blush pink — much less saturated than before */
+    background:
+      radial-gradient(circle at 15% 20%, rgba(255, 182, 193, 0.42) 0%, transparent 50%),
+      radial-gradient(circle at 85% 80%, rgba(255, 192, 203, 0.42) 0%, transparent 50%),
+      radial-gradient(circle at 50% 100%, rgba(255, 218, 224, 0.35) 0%, transparent 55%),
+      linear-gradient(135deg, #FFFAF5 0%, #FFEFF4 50%, #FFE4EC 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    color: var(--black);
+    padding-bottom: 60px;
+  }
+
+  /* Sparkle stars background */
+  .sparkles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(255,215,0,.5) 0 2px, transparent 3px),
+      radial-gradient(circle at 78% 12%, rgba(255,255,255,.7) 0 1.5px, transparent 2.5px),
+      radial-gradient(circle at 35% 75%, rgba(255,215,0,.45) 0 2px, transparent 3px),
+      radial-gradient(circle at 90% 65%, rgba(255,255,255,.55) 0 1.5px, transparent 2.5px),
+      radial-gradient(circle at 8% 55%, rgba(255,215,0,.4) 0 1.5px, transparent 2.5px),
+      radial-gradient(circle at 60% 40%, rgba(255,255,255,.5) 0 1px, transparent 2px);
+    background-size: 700px 700px;
+    animation: twinkleBg 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes twinkleBg {
+    0%   { opacity: .55; }
+    100% { opacity: 1; }
+  }
+
+  /* Floating hearts layer */
+  .hearts-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 2;
+    overflow: hidden;
+  }
+
+  .heart {
+    position: absolute;
+    bottom: -40px;
+    user-select: none;
+    animation: floatUp linear forwards;
+    filter: drop-shadow(0 0 6px rgba(255,255,255,.65));
+    will-change: transform, opacity;
+  }
+
+  @keyframes floatUp {
+    0%   { transform: translateY(0) rotate(0deg) scale(.6); opacity: 0; }
+    8%   { opacity: .95; }
+    92%  { opacity: .95; }
+    100% { transform: translateY(-110vh) rotate(360deg) scale(1); opacity: 0; }
+  }
+
+  /* Butterflies & flowers */
+  .flutter {
+    position: fixed;
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+    opacity: .9;
+    filter: drop-shadow(0 0 4px rgba(255,255,255,.4));
+    will-change: transform;
+  }
+
+  .flutter.b-fly  { animation: flyA 14s ease-in-out infinite; }
+  .flutter.flower { animation: flyB 20s ease-in-out infinite; }
+  .flutter.b-fly2 { animation: flyC 18s ease-in-out infinite; }
+
+  @keyframes flyA {
+    0%, 100% { transform: translate(0, 0) rotate(0); }
+    25% { transform: translate(180px, -120px) rotate(20deg); }
+    50% { transform: translate(360px, 30px)  rotate(-15deg); }
+    75% { transform: translate(180px, 180px) rotate(25deg); }
+  }
+  @keyframes flyB {
+    0%, 100% { transform: translate(0, 0) rotate(0); }
+    33% { transform: translate(-150px, 100px) rotate(180deg); }
+    66% { transform: translate(120px, -90px) rotate(360deg); }
+  }
+  @keyframes flyC {
+    0%, 100% { transform: translate(0, 0) rotate(0); }
+    25% { transform: translate(-220px, -60px) rotate(-20deg); }
+    50% { transform: translate(-340px, 80px) rotate(15deg); }
+    75% { transform: translate(-160px, 200px) rotate(-25deg); }
+  }
+
+  /* Top-left sparkle star */
+  .star-corner {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    font-size: 32px;
+    color: var(--gold);
+    z-index: 50;
+    animation: twinkle 1.6s ease-in-out infinite;
+    text-shadow: 0 0 8px #FFF;
+  }
+  @keyframes twinkle {
+    0%, 100% { transform: scale(1) rotate(0); opacity: 1; }
+    50%      { transform: scale(1.35) rotate(180deg); opacity: .55; }
+  }
+
+  /* Main scene */
+  .scene {
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px 80px;
+    gap: 22px;
+  }
+
+  /* Header */
+  .header { text-align: center; max-width: 90%; }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(2rem, 6vw, 3.4rem);
+    color: var(--magenta);
+    text-shadow:
+      2px 2px 0 var(--gold),
+      4px 4px 14px rgba(199, 21, 133, 0.22);
+    letter-spacing: 1px;
+    animation: titlePulse 2.4s ease-in-out infinite;
+  }
+  @keyframes titlePulse {
+    0%, 100% { transform: scale(1) rotate(-1deg); }
+    50%      { transform: scale(1.04) rotate(1deg); }
+  }
+
+  .header .subtitle {
+    font-size: clamp(.9rem, 2vw, 1.1rem);
+    color: var(--pink-1);
+    font-weight: 600;
+    margin-top: 8px;
+    text-shadow: 1px 1px 0 rgba(255, 215, 0, 0.55);
+    letter-spacing: 2px;
+  }
+
+  /* Hello Kitty (SVG container) */
+  .hello-kitty {
+    width: clamp(140px, 26vw, 200px);
+    height: auto;
+    animation: kittyBounce 2.2s ease-in-out infinite;
+    filter: drop-shadow(0 10px 14px rgba(0,0,0,.25));
+    z-index: 11;
+  }
+  @keyframes kittyBounce {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50%      { transform: translateY(-18px) rotate(3deg); }
+  }
+  .hello-kitty svg { width: 100%; height: auto; display: block; }
+
+  /* Letter box wrapper */
+  .letterbox-wrap {
+    perspective: 1000px;
+    position: relative;
+  }
+
+  /* The cute mailbox / letter box — auto-grows when opened to fit long letters */
+  .letterbox {
+    position: relative;
+    width: clamp(300px, 72vw, 400px);
+    min-height: clamp(220px, 50vw, 280px);
+    background:
+      linear-gradient(135deg, var(--pink-3) 0%, var(--pink-4) 60%, var(--pink-3) 100%);
+    border: 5px solid var(--magenta);
+    border-radius: 30px;
+    box-shadow:
+      0 20px 40px rgba(0,0,0,.28),
+      inset 0 -12px 22px rgba(199,21,133,.18),
+      inset 0 10px 20px rgba(255,255,255,.65);
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform .3s ease, min-height .65s cubic-bezier(.34,1.56,.64,1);
+  }
+
+  /* When opened, the letter box grows tall to reveal the long letter */
+  .letterbox.open {
+    min-height: clamp(560px, 105vw, 720px);
+  }
+
+  .letterbox:hover {
+    transform: scale(1.03) rotate(-1deg);
+  }
+
+  /* NEW: Calm gentle pulse on every tap/click — a soft "settle"
+     instead of a bouncy wobble. Plays briefly when you click the
+     letter box, then settles back so the hover effect you love
+     is preserved. */
+  @keyframes clickCalm {
+    0%, 100% { transform: scale(1) rotate(0); }
+    50%      { transform: scale(0.98) rotate(-0.5deg); }
+  }
+  .letterbox.click-calm {
+    animation: clickCalm 0.4s ease-in-out;
+  }
+
+  /* dashed inner border */
+  .letterbox::before {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 2px dashed var(--pink-1);
+    border-radius: 22px;
+    pointer-events: none;
+    opacity: .65;
+  }
+
+  /* Mailbox flag (right side) */
+  .flag {
+    position: absolute;
+    right: -12px;
+    top: 30px;
+    width: 56px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-2));
+    border: 3px solid var(--magenta);
+    border-radius: 10px 10px 4px 4px;
+    transform-origin: bottom left;
+    animation: flagWave 3s ease-in-out infinite;
+    box-shadow: 0 6px 10px rgba(0,0,0,.25);
+    z-index: 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+  }
+  @keyframes flagWave {
+    0%, 100% { transform: rotate(-15deg); }
+    50%      { transform: rotate(15deg); }
+  }
+
+  /* Letter flap (the lid that opens on click) */
+  .flap {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 72%;
+    height: 70px;
+    background: linear-gradient(180deg, var(--pink-2), var(--pink-1));
+    border: 4px solid var(--magenta);
+    border-radius: 0 0 22px 22px;
+    transform-origin: top center;
+    transition: transform .7s cubic-bezier(.34,1.56,.64,1);
+    z-index: 5;
+    box-shadow: 0 4px 10px rgba(0,0,0,.22);
+    backface-visibility: hidden;
+  }
+
+  .flap::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%; height: 8px;
+    background: var(--magenta);
+    border-radius: 4px;
+    opacity: .55;
+  }
+
+  .flap::after {
+    content: '✉ CLICK ME ✉';
+    position: absolute;
+    bottom: 8px; left: 50%;
+    transform: translateX(-50%);
+    color: #FFF;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-shadow: 1px 1px 0 var(--magenta);
+    white-space: nowrap;
+  }
+
+  .letterbox.open .flap {
+    transform: translateX(-50%) rotateX(180deg);
+  }
+
+  /* Message (the actual letter) — relative position so letter box grows with it */
+  .message {
+    position: relative;
+    margin: 100px auto 18px;
+    width: 88%;
+    max-height: 0;
+    opacity: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: var(--cream);
+    border: 3px solid var(--pink-1);
+    border-radius: 18px;
+    padding: 0 18px;
+    text-align: center;
+    transition: opacity .55s ease .25s, max-height .65s ease .25s, padding .55s ease .25s, margin .55s ease .25s;
+    box-shadow: 0 8px 18px rgba(199,21,133,.3);
+    z-index: 4;
+    scrollbar-width: thin;
+    scrollbar-color: var(--pink-1) var(--pink-4);
+  }
+
+  /* Cute thin scrollbar (Webkit) */
+  .message::-webkit-scrollbar { width: 8px; }
+  .message::-webkit-scrollbar-track { background: var(--pink-4); border-radius: 8px; margin: 6px 0; }
+  .message::-webkit-scrollbar-thumb { background: var(--pink-1); border-radius: 8px; }
+  .message::-webkit-scrollbar-thumb:hover { background: var(--magenta); }
+
+  .letterbox.open .message {
+    opacity: 1;
+    max-height: clamp(440px, 80vw, 560px);
+    padding: 22px 20px 18px;
+  }
+
+  .message .dear {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    color: var(--magenta);
+    margin-bottom: 6px;
+    text-shadow: 1px 1px 0 var(--gold);
+  }
+
+  .message .body-text {
+    font-size: clamp(.95rem, 2.5vw, 1.1rem);
+    color: var(--black);
+    font-weight: 500;
+    line-height: 1.9;
+    margin: 0 0 14px 0;
+    text-align: left;
+  }
+
+  .message .body-text:last-of-type { margin-bottom: 10px; }
+
+  .message .big-line {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(1.2rem, 3.4vw, 1.6rem);
+    color: var(--pink-1);
+    margin: 8px 0 10px;
+    text-shadow: 1px 1px 0 var(--gold);
+    animation: heartbeat 1.4s ease-in-out infinite;
+  }
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    25%      { transform: scale(1.08); }
+    40%      { transform: scale(1); }
+  }
+
+  .message .sign-off {
+    font-size: .95rem;
+    color: var(--magenta);
+    margin-top: 6px;
+    font-weight: 700;
+  }
+
+  .message::after {
+    font-size: 28px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,.2));
+  }
+
+  /* Footer hint */
+  .hint {
+    color: var(--magenta);
+    font-weight: 700;
+    text-shadow: 1px 1px 0 rgba(255, 215, 0, 0.55);
+    margin-top: 6px;
+    animation: pulseHint 2s ease-in-out infinite;
+    text-align: center;
+    font-size: clamp(.9rem, 2.4vw, 1.05rem);
+    letter-spacing: 1px;
+  }
+  @keyframes pulseHint {
+    0%, 100% { opacity: .8; transform: translateY(0); }
+    50%      { opacity: 1; transform: translateY(-3px); }
+  }
+
+  /* Spinning vinyl disc — DECORATIVE ONLY (not a button).
+     Just spins while the song plays. */
+  .music-disc {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    border: 4px solid #FFF;
+    z-index: 100;
+    pointer-events: none;  /* decorative — clicks pass through to the page */
+    background:
+      radial-gradient(circle, #FFD700 0 22%, #C71585 22% 38%, #1a1a1a 38% 100%);
+    box-shadow:
+      0 8px 20px rgba(0,0,0,.4),
+      inset 0 0 0 6px rgba(255,255,255,.12),
+      inset 0 0 18px rgba(0,0,0,.55);
+  }
+
+  /* grooves on the disc */
+  .music-disc::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: repeating-radial-gradient(
+      circle,
+      transparent 0 5px,
+      rgba(255,255,255,.07) 5px 5.5px
+    );
+    pointer-events: none;
+  }
+
+  /* center hole */
+  .music-disc::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 18px; height: 18px;
+    background: #FFF;
+    border: 2px solid var(--magenta);
+    border-radius: 50%;
+    z-index: 2;
+  }
+
+  /* Disc spins while the song plays */
+  .music-disc.playing {
+    animation: spin 3s linear infinite;
+  }
+  @keyframes spin {
+    from { transform: rotate(0); }
+    to   { transform: rotate(360deg); }
+  }
+
+  /* Disc pulses with a "tap to start" hint when autoplay was blocked */
+  .music-disc.needs-tap {
+    animation: discPulse 1.3s ease-in-out infinite;
+  }
+  @keyframes discPulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow:
+        0 8px 20px rgba(0,0,0,.4),
+        inset 0 0 0 6px rgba(255,255,255,.12),
+        inset 0 0 18px rgba(0,0,0,.55),
+        0 0 0 4px rgba(255,20,147,.55),
+        0 0 18px 4px rgba(255,20,147,.55);
+    }
+    50% {
+      transform: scale(1.12);
+      box-shadow:
+        0 8px 20px rgba(0,0,0,.4),
+        inset 0 0 0 6px rgba(255,255,255,.12),
+        inset 0 0 18px rgba(0,0,0,.55),
+        0 0 0 10px rgba(255,20,147,.85),
+        0 0 28px 8px rgba(255,20,147,.7);
+    }
+  }
+
+  /* tiny "tap to start" hint below the disc, only visible when pulsing */
+  .music-disc .tap-hint {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--cream);
+    color: var(--magenta);
+    font-size: 10px;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+    border: 2px solid var(--magenta);
+    letter-spacing: 1.5px;
+    z-index: 3;
+    box-shadow: 0 3px 6px rgba(0,0,0,.2);
+    opacity: 0;
+    transition: opacity .3s ease;
+  }
+  .music-disc.needs-tap .tap-hint {
+    opacity: 1;
+  }
+
+  /* Mobile tweaks */
+  @media (max-width: 480px) {
+    .header h1 { letter-spacing: 1px; }
+    .flag { width: 46px; height: 56px; right: -8px; font-size: 20px; }
+    .music-disc { width: 64px; height: 64px; top: 16px; right: 16px; }
+    .scene { padding-top: 80px; }
+  }
+</style>
+</head>
+<body>
+  <!-- Hidden audio: drop a file named "song.mp4" in the SAME folder
+       as this HTML and it'll auto-play when the page opens! -->
+<audio id="songAudio" src="audio/Sunflower CD 1 TRACK 1 (320).mp3" loop preload="auto"></audio>
+
+  <!-- Spinning vinyl disc — decorative only, spins while the song plays -->
+  <div class="music-disc" id="musicDisc" aria-hidden="true">
+    <span class="tap-hint">♪ TAP!</span>
+  </div>
+
+  <div class="sparkles"></div>
+  <div class="star-corner">✨</div>
+
+  <!-- Floating hearts layer -->
+  <div class="hearts-layer" id="heartsLayer"></div>
+
+  <!-- Main scene -->
+  <main class="scene">
+    <header class="header">
+      <h1>Clickk thiss letter :) </h1>
+      <div class="subtitle"> </div>
+    </header>
+
+    <!-- Hello Kitty SVG -->
+    <div class="hello-kitty" aria-hidden="true"></div>
+
+    <!-- Letter box -->
+    <div class="letterbox-wrap">
+      <div class="letterbox" id="letterbox" role="button" tabindex="0" aria-label="Open the letter">
+        <div class="flag">💌</div>
+        <div class="flap"></div>
+        <div class="message">
+          <!-- ══════════════════════════════════════════════════════════════════════════════════════════════
+               YOUR CONFESSION PARAGRAPH — type your whole paragraph below.
+               Replace everything between <p class="body-text"> and </p> with your own words.
+               The letter box will auto-grow to fit any length, so write as much as you want. 💕
+               ══════════════════════════════════════════════════════════════════════════════════════════════ -->
+          <div class="dear"></div>
+
+          <p class="body-text">Hey Ruby, 
+
+I've been wanting to tell you this for a while. I've liked you since September 10, and now it's almost been two months. My friends told me to confess because they think I'm wasting my time, but honestly, I don't think these two months were a waste at all.
+
+I really like your smile, your laugh, and the way you talk. Sometimes I make dumb jokes just to see your smile. I also remember little things about you  like how you enjoy playing chess and love eating snacks. I hope you still remember the first time I gave you Oreos and Zeno drinks. Even if you don't feel the same way, I'd still love to share snacks with you whenever I can.
+
+I've really enjoyed playing Impostor, Truth or Dare, and UNO with you. it was really fun playing with you and i would never forget that . I'm glad I got to know you, even if we are just friend i would still wanna play those game with you.
+
+I actually wanted to confess at school, but I got too nervous and knew I'd probably make everything awkward, so I decided to write this instead im sorry if i make this effortless  And I'm sorry again about the birthday gift  I was honestly so awkward and didn't know how to act.
+
+I'm not gonna lie, I have a feeling you might see me as just a friend, and that's okay. I don't expect you to like me back, and I don't want you to feel pressured by this letter. I just wanted to be honest about my feelings instead of keeping them to myself.
+
+So yeah Ruby May I Be Your BoyFriend . Whatever your answer is I'll respect it. I'm just happy I got to know you and make these little memories with you.
+
+I hope you have the best time with your family and friends this Thadinguyt I'm sorry if this letter distracts you or makes things awkward. That's not what I want.
+
+Take care of yourself, Ruby, and please keep smiling.
+</p>
+
+          <div class="sign-off">♥ Oliver ♥</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hint">👆 Click hereeee 👆</div>
+  </main>
+
+  <script>
+    /* ─── Hello Kitty as inline SVG (no external image needed) ─── */
+    document.querySelector('.hello-kitty').innerHTML = `
+      <svg viewBox="0 0 220 200" xmlns="http://www.w3.org/2000/svg" aria-label="Hello Kitty">
+        <!-- soft shadow under chin -->
+        <ellipse cx="110" cy="190" rx="55" ry="8" fill="rgba(0,0,0,0.12)"/>
+
+        <!-- Left ear -->
+        <path d="M55 70 L40 28 L92 60 Z" fill="#FFFFFF" stroke="#000" stroke-width="3" stroke-linejoin="round"/>
+        <!-- Right ear -->
+        <path d="M165 70 L180 28 L128 60 Z" fill="#FFFFFF" stroke="#000" stroke-width="3" stroke-linejoin="round"/>
+
+        <!-- Head -->
+        <ellipse cx="110" cy="110" rx="70" ry="55" fill="#FFFFFF" stroke="#000" stroke-width="3"/>
+
+        <!-- Bow on left ear (viewer's left = Kitty's right) -->
+        <g transform="translate(60, 45) rotate(-12)">
+          <ellipse cx="-15" cy="0" rx="16" ry="10" fill="#FF1744" stroke="#000" stroke-width="2"/>
+          <ellipse cx="15" cy="0" rx="16" ry="10" fill="#FF1744" stroke="#000" stroke-width="2"/>
+          <ellipse cx="-15" cy="0" rx="9" ry="5" fill="#FF80AB" stroke="#000" stroke-width="1"/>
+          <ellipse cx="15" cy="0" rx="9" ry="5" fill="#FF80AB" stroke="#000" stroke-width="1"/>
+          <circle cx="0" cy="0" r="7" fill="#FFD700" stroke="#000" stroke-width="2"/>
+          <circle cx="0" cy="0" r="3" fill="#FF6F00"/>
+        </g>
+
+        <!-- Eyes -->
+        <ellipse cx="85" cy="108" rx="7" ry="10" fill="#000"/>
+        <ellipse cx="135" cy="108" rx="7" ry="10" fill="#000"/>
+        <!-- eye shine -->
+        <ellipse cx="83" cy="104" rx="2" ry="3" fill="#FFF"/>
+        <ellipse cx="133" cy="104" rx="2" ry="3" fill="#FFF"/>
+
+        <!-- Nose (yellow oval) -->
+        <ellipse cx="110" cy="125" rx="6" ry="4.5" fill="#FFD700" stroke="#000" stroke-width="1.5"/>
+
+        <!-- Whiskers (left) -->
+        <line x1="40" y1="112" x2="68" y2="118" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+        <line x1="38" y1="124" x2="68" y2="124" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+        <line x1="40" y1="136" x2="68" y2="130" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+        <!-- Whiskers (right) -->
+        <line x1="152" y1="118" x2="180" y2="112" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+        <line x1="152" y1="124" x2="182" y2="124" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+        <line x1="152" y1="130" x2="180" y2="136" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+
+        <!-- tiny blush -->
+        <ellipse cx="68" cy="135" rx="7" ry="4" fill="#FFB6C1" opacity="0.7"/>
+        <ellipse cx="152" cy="135" rx="7" ry="4" fill="#FFB6C1" opacity="0.7"/>
+      </svg>
+    `;
+
+    /* ─── Floating hearts ─── */
+    const heartsLayer = document.getElementById('heartsLayer');
+    const heartEmojis = ['💕', '💖', '💗', '💝', '♥', '🌸', '🌺', '🌷', '💋', '✨'];
+
+    function createHeart(opts = {}) {
+      const h = document.createElement('div');
+      h.className = 'heart';
+      h.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+      h.style.left = (Math.random() * 100) + '%';
+      h.style.fontSize = (16 + Math.random() * 26) + 'px';
+      const dur = opts.duration || (5.5 + Math.random() * 5);
+      h.style.animationDuration = dur + 's';
+      heartsLayer.appendChild(h);
+      setTimeout(() => h.remove(), dur * 1000 + 200);
+    }
+    setInterval(createHeart, 420);
+    // pre-spawn a handful so it's not empty at first
+    for (let i = 0; i < 10; i++) setTimeout(createHeart, i * 220);
+
+    /* ─── Butterflies & flowers drifting around ─── */
+    const flutterItems = [
+      { type: 'b-fly',  emoji: '🦋', left: '8%',  top: '70%' },
+      { type: 'flower', emoji: '🌸', left: '85%', top: '25%' },
+      { type: 'b-fly2', emoji: '🦋', left: '88%', top: '78%' },
+      { type: 'flower', emoji: '🌺', left: '6%',  top: '30%' },
+      { type: 'b-fly',  emoji: '🦋', left: '50%', top: '12%' },
+      { type: 'flower', emoji: '🌷', left: '48%', top: '88%' },
+    ];
+    flutterItems.forEach((f, i) => {
+      const el = document.createElement('div');
+      el.className = 'flutter ' + f.type;
+      el.textContent = f.emoji;
+      el.style.left = f.left;
+      el.style.top = f.top;
+      el.style.fontSize = (22 + Math.random() * 14) + 'px';
+      el.style.animationDelay = (i * 1.4) + 's';
+      el.style.animationDuration = (12 + Math.random() * 10) + 's';
+      document.body.appendChild(el);
+    });
+
+    /* ─── Letter box open/close ─── */
+    const letterbox = document.getElementById('letterbox');
+    function toggleLetter() {
+      // Calm gentle pulse on every click — a soft "settle" feedback
+      letterbox.classList.remove('click-calm');
+      void letterbox.offsetWidth; // restart animation even on rapid clicks
+      letterbox.classList.add('click-calm');
+      setTimeout(() => letterbox.classList.remove('click-calm'), 450);
+
+      letterbox.classList.toggle('open');
+      if (letterbox.classList.contains('open')) {
+        // burst of hearts on open
+        for (let i = 0; i < 18; i++) {
+          setTimeout(() => createHeart({ duration: 6 + Math.random() * 3 }), i * 90);
+        }
+      }
+    }
+    letterbox.addEventListener('click', toggleLetter);
+    letterbox.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleLetter(); }
+    });
+
+    /* ─── Auto-playing song + spinning disc ──────────────────────────
+       Drop a file named "song.mp4" in the SAME folder as this HTML and
+       it will auto-play the moment the page opens. The vinyl disc spins
+       while the song plays. If the browser blocks autoplay (most do for
+       local files), the disc gently pulses with a "♪ TAP!" hint — the
+       first tap anywhere on the page (e.g. tapping the letter box) will
+       start the song automatically. No buttons, no clicks needed on the
+       disc itself — it's just decoration. 💕 */
+    const songAudio = document.getElementById('songAudio');
+    const musicDisc = document.getElementById('musicDisc');
+
+    let songLoaded         = false;
+    let needsTap           = false;
+    let userHasInteracted  = false;
+
+    // When the song starts playing → spin the disc
+    songAudio.addEventListener('play', () => {
+      needsTap = false;
+      musicDisc.classList.remove('needs-tap');
+      musicDisc.classList.add('playing');
+    });
+    // When the song pauses or ends → stop the disc
+    songAudio.addEventListener('pause', () => musicDisc.classList.remove('playing'));
+    songAudio.addEventListener('ended', () => musicDisc.classList.remove('playing'));
+
+    // Song finished loading → try to autoplay
+    songAudio.addEventListener('loadedmetadata', () => {
+      songLoaded = true;
+      attemptAutoplay();
+    });
+    songAudio.addEventListener('canplay', () => {
+      songLoaded = true;
+      attemptAutoplay();
+    });
+
+    // Race-condition fix: with preload="auto" the audio may have ALREADY
+    // finished loading by the time we attach the listeners above.
+    if (songAudio.readyState >= 1) {
+      songLoaded = true;
+      setTimeout(attemptAutoplay, 80);
+    }
+
+    // Song failed to load (e.g., song.mp4 is missing) → silently leave
+    // the disc static (no error UI, no autoplay attempt).
+    songAudio.addEventListener('error', () => {
+      songLoaded = false;
+    });
+
+    // Try to autoplay; if browser blocks it → mark needs-tap and pulse
+    function attemptAutoplay() {
+      if (!songLoaded) return;
+      if (!songAudio.paused) return;
+      songAudio.play().catch(() => {
+        if (!userHasInteracted) {
+          needsTap = true;
+          musicDisc.classList.add('needs-tap');
+        }
+      });
+    }
+
+    // First user interaction anywhere → start the song if needed.
+    // This is what makes "tap the letter box to open it" ALSO start the
+    // song in one motion — no extra click on the disc needed.
+    function onFirstInteraction() {
+      if (userHasInteracted) return;
+      userHasInteracted = true;
+      cleanupFirstInteraction();
+      if (songLoaded && songAudio.paused) {
+        songAudio.play().catch(() => {});
+      }
+      // If song hasn't loaded yet, attemptAutoplay will fire it as soon
+      // as it loads (and since userHasInteracted=true, it'll succeed).
+    }
+    function cleanupFirstInteraction() {
+      document.removeEventListener('click', onFirstInteraction);
+      document.removeEventListener('touchstart', onFirstInteraction);
+      document.removeEventListener('keydown', onFirstInteraction);
+    }
+    document.addEventListener('click', onFirstInteraction);
+    document.addEventListener('touchstart', onFirstInteraction, { passive: true });
+    document.addEventListener('keydown', onFirstInteraction);
+  </script>
+</body>
+</html>
